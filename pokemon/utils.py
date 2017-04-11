@@ -1,17 +1,31 @@
 from flask import jsonify
-from pokemon import app
-import requests
+from random import randint
+from pokemon import app, db
+from pokemon.models import Pokemon, Move
+import pykemon
+import random
+
+
 
 def get_info():
-    # retrieve full API information for user's pokemon and opponent (random integers will be used in production)
 
-    my_poke = requests.get('https://pokeapi.co/api/v2/pokemon/1').json()
-    opponent = requests.get('https://pokeapi.co/api/v2/pokemon/72').json()
+    #don't forget to add the caching to this otherwise you will run out of requests
 
-    #retrieve name, 3 moves
+    pokemon = pykemon.get(pokemon_id=1)
+    opponent = pykemon.get(pokemon_id=33)
+    final = {'pokemon': {'moves': random.sample([{k:v} for k,v in pokemon.moves.iteritems()], 10), 'name': pokemon.name, 'hp': 100 }, 'opponent': {'moves': random.sample([{k:v} for k,v in opponent.moves.iteritems()], 10), 'name': opponent.name, 'hp': 100 } }
+    return final
 
-    fight_info = [  {key: move['move'][key] for key in move['move']} for move in my_poke.get('moves')[0:3], {key: move['move'][key] for key in move['move']} for move in opponent.get('moves')[0:3] ]
 
-    fight_info.append(my_poke.get('name'))
+    '''db.session.add(moves=final['moves'], name=final['name'], hp=final['hp'])
+    db.session.commit()
 
-    return jsonify(fight_info)
+def get_move(move):
+    move_get = pykemon.get(move_id=move)
+
+    return move_get'''
+
+
+
+def serialize_moves():
+    return dict(name=move.name, url=move.url, pokemon_id=move.pokemon_id)

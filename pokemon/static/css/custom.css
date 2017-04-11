@@ -1,0 +1,9 @@
+.pokemon {
+  display: block;
+  float: left;
+}
+
+.opponent {
+  display: block;
+  float: right;
+}

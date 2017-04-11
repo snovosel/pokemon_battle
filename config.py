@@ -1,7 +1,9 @@
 import os
-import requests_cache
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-
 class BaseConfiguration(object):
-    requests_cache.install_cache(cache_name='poke_cache', backend='sqlite', expire_after=180)
+
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db').encode('utf-8')
+    SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
