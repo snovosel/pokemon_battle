@@ -21,4 +21,6 @@ def move_json():
     move = request.args.get('move_id')
     name = request.args.get('name')
 
-    return jsonify(pokemon_attack(move))
+    print move
+
+    return jsonify(pokemon_attack(name, move))

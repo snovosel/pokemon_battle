@@ -54,7 +54,7 @@ function populate_table(data) {
               var move_id = api_address.split('/')[4]
 
                     var $tr = $('<tr class="moves-list">').append(
-                        $('<td class="move"> ').html("<button id='" + move_id + "' class=' pokemon pokemon-move move-button' >" + key + "</button>")
+                        $('<td class="move"> ').html("<button id='" + move_id + "' class='pokemon pokemon-move move-button' >" + key + "</button>")
                       ).appendTo('#pokemon_moves');
 
                     });
@@ -66,7 +66,7 @@ function populate_table(data) {
                 var move_id = api_address.split('/')[4]
 
                 var $tr = $('<tr class="moves-list">').append(
-                    $('<td class="move"> ').html("<button id='" + move_id + "' class=' opponent opponent-move move-button' >" + key + "</button>")
+                    $('<td class="move"> ').html("<button id='" + move_id + "' class='opponent opponent-move move-button' >" + key + "</button>")
                 ).appendTo('#opponent_moves');
 
             });
@@ -77,7 +77,7 @@ function populate_table(data) {
 
 
 
-            var name = $(this).attr('class').split(' ')[1]
+            var name = $(this).attr('class').split(' ')[0]
             // send ajax
             $.ajax({
                 url: '/move/', // url where to submit the request
@@ -93,7 +93,6 @@ function populate_table(data) {
                     // tab of the developer tools
                     populate_page(data)
 
-                    console.log(move_id)
                     console.log(data)
 
                 },

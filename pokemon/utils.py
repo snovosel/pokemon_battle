@@ -16,28 +16,13 @@ def initialize_fight():
     return dict(pokemon=pokemon.to_dict(), opponent=opponent.to_dict())
 
 
-def pokemon_attack(move):
-    opponent.hp -= pokemon.attack(15)
-    return dict(pokemon=pokemon.to_dict(), opponent=opponent.to_dict())
+def pokemon_attack(name, move):
 
 
 
-
-
-
-
-
-
-
-
-
-
-'''def attack(move, pokemon):
-    final = Pokemon.hp - move.power
-    return final'''
-
-
-#flow ---- all hp,name,moves go to index(json)
-#          move is pressed, id is sent to server
-#          move power is subtracted from hp
-#          all hp, name, moves go to index
+    if name == 'pokemon':
+        opponent.hp -= pokemon.attack(15)
+        return dict(pokemon=pokemon.to_dict(), opponent=opponent.to_dict())
+    elif name == 'opponent':
+        pokemon.hp -= opponent.attack(15)
+        return dict(pokemon=pokemon.to_dict(), opponent=opponent.to_dict())
