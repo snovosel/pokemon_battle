@@ -8,8 +8,8 @@ import random
 
 p = random.randint(0, 100)
 o = random.randint(0, 100)
-pokemon = Pokemon(1)
-opponent = Pokemon(47)
+pokemon = Pokemon(p)
+opponent = Pokemon(o)
 
 
 def initialize_fight():
@@ -21,7 +21,7 @@ def pokemon_attack(name, move):
 
 
     if name == 'pokemon':
-        opponent.hp -= pokemon.attack(15)
+        opponent.hp -= pokemon.attack(move)
         return dict(pokemon=pokemon.to_dict(), opponent=opponent.to_dict())
     elif name == 'opponent':
         pokemon.hp -= opponent.attack(15)
