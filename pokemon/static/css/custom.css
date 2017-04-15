@@ -7,3 +7,8 @@
   display: block;
   float: right;
 }
+
+.damage-number {
+  display: block;
+  color: red;
+}

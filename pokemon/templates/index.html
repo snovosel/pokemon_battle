@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,97 +8,35 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-
-
-    <script type=text/javascript>
-        $(document).ready(function() {
-            // send ajax
-            $.ajax({
-                url: '/pokemon', // url where to submit the request
-                type: "GET", // type of action POST || GET
-                dataType: 'json', // data type
-                success: function(data) {
-                    console.log('working')
-                    populate_page(data);
-                    // you can see the result from the console
-                    // tab of the developer tools
-
-                },
-                error: function(xhr, resp, text) {
-                    console.log(xhr, resp, text);
-                }
-
-            });
-
-            function populate_page(data) {
-
-                var hp = $('#poke_hp').append(
-                    $('<p> hp:' + data.pokemon.hp + '</p>')
-                );
-
-                var wrp = $('#poke_name').append(
-                    $('<p>' + data.pokemon.name + ' has appeared!  </p>')
-
-                );
-
-                $.each(data.pokemon.moves, function(index, value) {
-                    $.each(value, function(key, value2) {
-
-                        var $tr = $('<tr class="moves-list">').append(
-                            $('<td class="move">').html("<button class='move-button'><a href='#' id=" + value2 + ">" + key + "</a></button>")
-                        ).appendTo('#poke_moves');
-
-                    });
-
-                });
-
-                var hp = $('#opponent_hp').append(
-                    $('<p> hp:' + data.opponent.hp + '</p>')
-                );
-
-                var wrp = $('#opponent_name').append(
-                    $('<p>' + data.opponent.name + ' has appeared!  </p>')
-                );
-
-                $.each(data.opponent.moves, function(index, value) {
-                    $.each(value, function(key, value2) {
-
-                        var $tr = $('<tr class="moves-list">').append(
-                            $('<td class="move">').html("<button class='move-button'><a href='#' id=" + value2 + ">" + key + "</a></button>")
-                        ).appendTo('#opponent_moves');
-
-                    });
-
-                });
-
-            };
-
-        });
+    <script src="../static/js/custom.js">
     </script>
+
+
 </head>
 
 <body>
 
     <div class='wrapper'>
-        <div class='pokemon'>
+        <div class='pokemon' id='pokemon_info'>
+            <span class='pokemon_name'></span>
 
-            <div class='name' id='poke_name'></div>
+            <span class='pokemon_hp'></span>
 
-            <div class='hp' id='poke_hp'></div>
-
-            <table id='poke_moves'>
+            <table id='pokemon_moves'>
 
             </table>
 
         </div>
 
-        <div class='opponent'>
+        <div class='opponent' id='opponent_info'>
 
-            <div class='name' id='opponent_name'></div>
+            <span class='opponent_name'></span>
 
-            <div class='hp' id='opponent_hp'></div>
+            <span class='opponent_hp'></span>
+
 
             <table id='opponent_moves'>
+
 
             </table>
 
